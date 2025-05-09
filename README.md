@@ -8,25 +8,19 @@ An Electron application with React and TypeScript
 
 ## Project Setup
 
-### Install
+Recommended to install [bun](https://bun.sh/). (note that commands below work with node / npm as well):
 
-```bash
-npm install
+```
+curl -fsSL https://bun.sh/install | bash
 ```
 
-Or with bun:
+### Install
 
 ```bash
 bun install
 ```
 
 ### Development
-
-```bash
-npm run dev
-```
-
-Or with bun:
 
 ```bash
 bun run dev
@@ -36,11 +30,11 @@ bun run dev
 
 ```bash
 # For windows
-$ npm run build:win
+$ bun run build:win
 
 # For macOS
-$ npm run build:mac
+$ bun run build:mac
 
 # For Linux
-$ npm run build:linux
+$ bun run build:linux
 ```
