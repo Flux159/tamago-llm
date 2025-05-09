@@ -38,3 +38,9 @@ $ bun run build:mac
 # For Linux
 $ bun run build:linux
 ```
+
+## Development
+
+The main react renderer is in `src/renderer/src/App.tsx`. Can make UI changes there, etc.
+
+The main electron app file ("server side") is `src/main/index.ts`. That sets up electron, starts the main window, etc. Can use this for ipc or just spin up an express server to do standard http stuff here.
