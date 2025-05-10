@@ -29,6 +29,7 @@ function createWindow(): void {
     resizable: false,
     maximizable: false,
     closable: false,
+    // focusable: true,
     focusable: false,
     alwaysOnTop: true, // TODO: Can change to false if you dont want to keep the window on top of all other windows.
     ...(process.platform === "linux" ? { icon } : {}),
