@@ -1,51 +1,53 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
+// import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js"; // Removed
 import "./assets/main.css"; // Assuming you might want some global styles
 
 // TODO: Might just be easier to get the glb and animations setup correctly in Blender and export them together so that it's easy to load properly
 
 // Import assets to get their URLs
 // import modelAssetUrl from "./assets/threejs/models/miku-hatsune-vocaloid-rigged/source/MIKU VOCALOID RIGGED.glb";
-import modelAssetUrl from "./assets/threejs/models/test.glb";
+// import modelAssetUrl from "./assets/threejs/models/test.glb";
+import modelAssetUrl from "./assets/threejs/combined/mikuangry.glb";
 
-import angryAnimUrl from "./assets/threejs/animations/Angry.fbx";
-import fallingAnimUrl from "./assets/threejs/animations/Falling.fbx";
-import hipHopAnimUrl from "./assets/threejs/animations/Hip Hop Dancing.fbx";
-import jumpAnimUrl from "./assets/threejs/animations/Jump.fbx";
-import rumbaAnimUrl from "./assets/threejs/animations/Rumba Dancing.fbx";
+// Removed FBX animation imports
+// import angryAnimUrl from "./assets/threejs/animations/Angry.fbx";
+// import fallingAnimUrl from "./assets/threejs/animations/Falling.fbx";
+// import hipHopAnimUrl from "./assets/threejs/animations/Hip Hop Dancing.fbx";
+// import jumpAnimUrl from "./assets/threejs/animations/Jump.fbx";
+// import rumbaAnimUrl from "./assets/threejs/animations/Rumba Dancing.fbx";
 
-// Import texture assets
-import texture0_3Url from "./assets/threejs/models/miku-hatsune-vocaloid-rigged/textures/Image_0_3.png";
-import texture1_8Url from "./assets/threejs/models/miku-hatsune-vocaloid-rigged/textures/Image_1_8.png";
-import texture2_4Url from "./assets/threejs/models/miku-hatsune-vocaloid-rigged/textures/Image_2_4.png";
-import texture3_9Url from "./assets/threejs/models/miku-hatsune-vocaloid-rigged/textures/Image_3_9.png";
-import texture4_11Url from "./assets/threejs/models/miku-hatsune-vocaloid-rigged/textures/Image_4_11.png";
-import texture5_6Url from "./assets/threejs/models/miku-hatsune-vocaloid-rigged/textures/Image_5_6.png";
-import texture6_10Url from "./assets/threejs/models/miku-hatsune-vocaloid-rigged/textures/Image_6_10.png";
-import texture7_5Url from "./assets/threejs/models/miku-hatsune-vocaloid-rigged/textures/Image_7_5.png";
-import texture8_12Url from "./assets/threejs/models/miku-hatsune-vocaloid-rigged/textures/Image_8_12.png";
-import texture9_1Url from "./assets/threejs/models/miku-hatsune-vocaloid-rigged/textures/Image_9_1.png";
-import texture10_0Url from "./assets/threejs/models/miku-hatsune-vocaloid-rigged/textures/Image_10_0.png";
-import texture11_13Url from "./assets/threejs/models/miku-hatsune-vocaloid-rigged/textures/Image_11_13.png";
-import texture12_2Url from "./assets/threejs/models/miku-hatsune-vocaloid-rigged/textures/Image_12_2.png";
-import texture13_7Url from "./assets/threejs/models/miku-hatsune-vocaloid-rigged/textures/Image_13_7.png";
+// // Import texture assets
+// import texture0_3Url from "./assets/threejs/models/miku-hatsune-vocaloid-rigged/textures/Image_0_3.png";
+// import texture1_8Url from "./assets/threejs/models/miku-hatsune-vocaloid-rigged/textures/Image_1_8.png";
+// import texture2_4Url from "./assets/threejs/models/miku-hatsune-vocaloid-rigged/textures/Image_2_4.png";
+// import texture3_9Url from "./assets/threejs/models/miku-hatsune-vocaloid-rigged/textures/Image_3_9.png";
+// import texture4_11Url from "./assets/threejs/models/miku-hatsune-vocaloid-rigged/textures/Image_4_11.png";
+// import texture5_6Url from "./assets/threejs/models/miku-hatsune-vocaloid-rigged/textures/Image_5_6.png";
+// import texture6_10Url from "./assets/threejs/models/miku-hatsune-vocaloid-rigged/textures/Image_6_10.png";
+// import texture7_5Url from "./assets/threejs/models/miku-hatsune-vocaloid-rigged/textures/Image_7_5.png";
+// import texture8_12Url from "./assets/threejs/models/miku-hatsune-vocaloid-rigged/textures/Image_8_12.png";
+// import texture9_1Url from "./assets/threejs/models/miku-hatsune-vocaloid-rigged/textures/Image_9_1.png";
+// import texture10_0Url from "./assets/threejs/models/miku-hatsune-vocaloid-rigged/textures/Image_10_0.png";
+// import texture11_13Url from "./assets/threejs/models/miku-hatsune-vocaloid-rigged/textures/Image_11_13.png";
+// import texture12_2Url from "./assets/threejs/models/miku-hatsune-vocaloid-rigged/textures/Image_12_2.png";
+// import texture13_7Url from "./assets/threejs/models/miku-hatsune-vocaloid-rigged/textures/Image_13_7.png";
 
-// Animation files information
-const animationFiles = [
-  { name: "Angry", path: angryAnimUrl },
-  { name: "Falling", path: fallingAnimUrl },
-  {
-    name: "Hip Hop Dancing",
-    path: hipHopAnimUrl,
-  },
-  { name: "Jump", path: jumpAnimUrl },
-  {
-    name: "Rumba Dancing",
-    path: rumbaAnimUrl,
-  },
-];
+// Animation files information - Removed as animation is embedded
+// const animationFiles = [
+//   { name: "Angry", path: angryAnimUrl },
+//   { name: "Falling", path: fallingAnimUrl },
+//   {
+//     name: "Hip Hop Dancing",
+//     path: hipHopAnimUrl,
+//   },
+//   { name: "Jump", path: jumpAnimUrl },
+//   {
+//     name: "Rumba Dancing",
+//     path: rumbaAnimUrl,
+//   },
+// ];
 
 // const modelPath =
 // "./assets/threejs/models/miku-hatsune-vocaloid-rigged/source/MIKU VOCALOID RIGGED.glb";
@@ -53,11 +55,14 @@ const modelPath = modelAssetUrl;
 
 function App(): React.JSX.Element {
   const mountRef = useRef<HTMLDivElement>(null);
-  const [mixer, setMixer] = useState<THREE.AnimationMixer | null>(null);
+  const mixerRef = useRef<THREE.AnimationMixer | null>(null); // Ref for the mixer
+  const [mixerState, setMixerState] = useState<THREE.AnimationMixer | null>(
+    null
+  ); // State to trigger effects
   const [animationActions, setAnimationActions] = useState<
     Record<string, THREE.AnimationAction>
-  >({});
-  const [currentAnimation, setCurrentAnimation] = useState<string>("");
+  >({}); // Will simplify this later if only one animation
+  const [currentAnimation, setCurrentAnimation] = useState<string>(""); // Will simplify this
   const [isPaused, setIsPaused] = useState<boolean>(false);
   const clockRef = useRef(new THREE.Clock());
 
@@ -93,39 +98,39 @@ function App(): React.JSX.Element {
     scene.add(directionalLight);
 
     // Texture mapping for LoadingManager
-    const textureUrlMap: Record<string, string> = {
-      "Image_0_3.png": texture0_3Url,
-      "Image_1_8.png": texture1_8Url,
-      "Image_2_4.png": texture2_4Url,
-      "Image_3_9.png": texture3_9Url,
-      "Image_4_11.png": texture4_11Url,
-      "Image_5_6.png": texture5_6Url,
-      "Image_6_10.png": texture6_10Url,
-      "Image_7_5.png": texture7_5Url,
-      "Image_8_12.png": texture8_12Url,
-      "Image_9_1.png": texture9_1Url,
-      "Image_10_0.png": texture10_0Url,
-      "Image_11_13.png": texture11_13Url,
-      "Image_12_2.png": texture12_2Url,
-      "Image_13_7.png": texture13_7Url,
-    };
+    // const textureUrlMap: Record<string, string> = {
+    //   "Image_0_3.png": texture0_3Url,
+    //   "Image_1_8.png": texture1_8Url,
+    //   "Image_2_4.png": texture2_4Url,
+    //   "Image_3_9.png": texture3_9Url,
+    //   "Image_4_11.png": texture4_11Url,
+    //   "Image_5_6.png": texture5_6Url,
+    //   "Image_6_10.png": texture6_10Url,
+    //   "Image_7_5.png": texture7_5Url,
+    //   "Image_8_12.png": texture8_12Url,
+    //   "Image_9_1.png": texture9_1Url,
+    //   "Image_10_0.png": texture10_0Url,
+    //   "Image_11_13.png": texture11_13Url,
+    //   "Image_12_2.png": texture12_2Url,
+    //   "Image_13_7.png": texture13_7Url,
+    // };
 
-    // LoadingManager to handle texture paths
-    const loadingManager = new THREE.LoadingManager();
-    loadingManager.setURLModifier((url) => {
-      console.log("Loading URL for textures?:", url);
+    // LoadingManager to handle texture paths - Not strictly needed for single embedded GLB
+    // const loadingManager = new THREE.LoadingManager();
+    // loadingManager.setURLModifier((url) => {
+    //   console.log("Loading URL for textures?:", url);
 
-      // url will be the original path from the GLTF file, e.g., "textures/Image_0_3.png" or "Image_0_3.png"
-      // We need to extract the base filename to match our map.
-      const fileName = url.substring(url.lastIndexOf("/") + 1);
-      if (textureUrlMap[fileName]) {
-        return textureUrlMap[fileName];
-      }
-      return url;
-    });
+    //   // url will be the original path from the GLTF file, e.g., "textures/Image_0_3.png" or "Image_0_3.png"
+    //   // We need to extract the base filename to match our map.
+    //   const fileName = url.substring(url.lastIndexOf("/") + 1);
+    //   if (textureUrlMap[fileName]) {
+    //     return textureUrlMap[fileName];
+    //   }
+    //   return url;
+    // });
 
     // GLTF Loader
-    const gltfLoader = new GLTFLoader(loadingManager); // Pass the manager
+    const gltfLoader = new GLTFLoader(); // No manager needed if not modifying URLs
     gltfLoader.load(
       modelPath,
       (gltf) => {
@@ -137,37 +142,26 @@ function App(): React.JSX.Element {
         // Removed material logging for now
 
         const newMixer = new THREE.AnimationMixer(model);
-        setMixer(newMixer);
-        const actions: Record<string, THREE.AnimationAction> = {};
+        mixerRef.current = newMixer; // Store in ref
+        setMixerState(newMixer); // Update state to trigger effects
+        console.log("Mixer created:", newMixer); // newMixer is correct here for the log
 
-        // FBX Loader for animations
-        const fbxLoader = new FBXLoader(loadingManager); // Pass the same manager
-        let animationsLoaded = 0;
-
-        animationFiles.forEach((animFile) => {
-          fbxLoader.load(
-            animFile.path,
-            (fbx) => {
-              const animationClip = fbx.animations[0];
-              if (animationClip) {
-                const action = newMixer.clipAction(animationClip);
-                actions[animFile.name] = action;
-              }
-              animationsLoaded++;
-              if (animationsLoaded === animationFiles.length) {
-                setAnimationActions(actions);
-                if (animationFiles.length > 0) {
-                  setCurrentAnimation(animationFiles[0].name);
-                  actions[animationFiles[0].name]?.play();
-                }
-              }
-            },
-            undefined,
-            (error) => {
-              console.error(`Error loading animation ${animFile.name}:`, error);
-            }
-          );
-        });
+        // Load animation from GLB
+        if (gltf.animations && gltf.animations.length) {
+          console.log("GLTF animations found:", gltf.animations);
+          const clip = gltf.animations[0]; // Assuming the first animation is the one we want
+          console.log("Selected animation clip:", clip);
+          const action = newMixer.clipAction(clip);
+          console.log("Created animation action:", action);
+          // For simplicity, let's name it 'embeddedAnimation' or use the clip's name
+          const animName = clip.name || "embeddedAnimation";
+          setAnimationActions({ [animName]: action });
+          setCurrentAnimation(animName);
+          action.play();
+          console.log(`Played action: ${animName}`);
+        } else {
+          console.warn("GLB model does not contain any animations.");
+        }
       },
       undefined,
       (error) => {
@@ -179,8 +173,15 @@ function App(): React.JSX.Element {
     const animate = (): void => {
       requestAnimationFrame(animate);
       const delta = clockRef.current.getDelta();
-      if (mixer && !isPaused) {
-        mixer.update(delta);
+      // console.log("In animate loop, delta:", delta); // Can be noisy
+      // console.log(mixerRef.current);
+      // console.log(isPaused);
+      console.log(mixerRef.current);
+      console.log(isPaused);
+      if (mixerRef.current && !isPaused) {
+        // Use mixerRef.current
+        // console.log("Updating mixer with delta:", delta); // Can be noisy
+        mixerRef.current.update(delta); // Use mixerRef.current
       }
       renderer.render(scene, camera);
     };
@@ -219,29 +220,49 @@ function App(): React.JSX.Element {
   }, []); // CRITICAL: Ensure this effect runs only once on mount
 
   useEffect(() => {
-    if (!mixer || Object.keys(animationActions).length === 0) return;
+    if (!mixerState || Object.keys(animationActions).length === 0) {
+      // Use mixerState
+      // console.log("Animation useEffect: Mixer or actions not ready.");
+      return;
+    }
+    console.log(
+      "Animation useEffect: Mixer and actions ready. Current anim:",
+      currentAnimation
+    );
 
     Object.values(animationActions).forEach((action) => action.stop());
     const currentAction = animationActions[currentAnimation];
     if (currentAction) {
+      console.log(
+        "Animation useEffect: Resetting and Playing action",
+        currentAction
+      );
+      currentAction.reset(); // Explicitly reset
       currentAction.play();
       if (isPaused) {
+        console.log("Animation useEffect: Setting action to paused.");
         currentAction.paused = true; // Ensure new animation respects pause state
       } else {
         currentAction.paused = false;
       }
+    } else {
+      console.log(
+        "Animation useEffect: No current action found for",
+        currentAnimation
+      );
     }
-  }, [currentAnimation, animationActions, mixer, isPaused]);
+  }, [currentAnimation, animationActions, mixerState, isPaused]); // Use mixerState in dependency array
 
-  const handleAnimationChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ): void => {
-    setCurrentAnimation(event.target.value);
-  };
+  // const handleAnimationChange = (  // Removed as dropdown is gone
+  //   event: React.ChangeEvent<HTMLSelectElement>
+  // ): void => {
+  //   setCurrentAnimation(event.target.value);
+  // };
 
   const togglePause = (): void => {
     setIsPaused(!isPaused);
-    if (mixer && animationActions[currentAnimation]) {
+    if (mixerRef.current && animationActions[currentAnimation]) {
+      // Use mixerRef.current
       const action = animationActions[currentAnimation];
       if (action.isRunning() && !isPaused) {
         // If running and about to pause
@@ -272,24 +293,12 @@ function App(): React.JSX.Element {
           backgroundColor: "transparent",
         }}
       >
-        <label htmlFor="animation-select" style={{ marginRight: "10px" }}>
-          Choose Animation:
-        </label>
-        <select
-          id="animation-select"
-          value={currentAnimation}
-          onChange={handleAnimationChange}
-          style={{ marginRight: "20px" }}
-        >
-          {animationFiles.map((anim) => (
-            <option key={anim.name} value={anim.name}>
-              {anim.name}
-            </option>
-          ))}
-        </select>
-        <button onClick={togglePause}>
-          {isPaused ? "Resume" : "Pause"} Animation
-        </button>
+        {/* Simplified UI: No animation selection if only one animation */}
+        {Object.keys(animationActions).length > 0 && (
+          <button onClick={togglePause}>
+            {isPaused ? "Resume" : "Pause"} Animation
+          </button>
+        )}
       </div>
       <div
         ref={mountRef}

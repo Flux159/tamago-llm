@@ -30,7 +30,7 @@ function createWindow(): void {
     maximizable: false,
     closable: false,
     // focusable: true,
-    // focusable: false,
+    focusable: false,
     alwaysOnTop: true, // TODO: Can change to false if you dont want to keep the window on top of all other windows.
     ...(process.platform === "linux" ? { icon } : {}),
     webPreferences: {
@@ -41,7 +41,7 @@ function createWindow(): void {
 
   mainWindow.setMenuBarVisibility(false);
   mainWindow.setMenu(null);
-  // mainWindow.setIgnoreMouseEvents(true);
+  mainWindow.setIgnoreMouseEvents(true);
 
   mainWindow.on("ready-to-show", () => {
     mainWindow.show();
